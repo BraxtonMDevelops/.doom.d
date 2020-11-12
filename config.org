@@ -1,0 +1,70 @@
+#+TITLE: Config
+* General Settings
+Setting my font for Doom Emacs, and making it pretty
+#+begin_src emacs-lisp
+  (setq doom-font (font-spec :family "Monofur Nerd Font Mono" :size 32))
+  (setq doom-theme 'doom-outrun-electric)
+  (setq display-line-numbers-type 'relative)
+#+end_src
+
+Makes Richard Stallman visit my Emacs
+#+begin_src emacs-lisp
+(setq fancy-splash-image "~/Pictures/emacs.png")
+#+end_src
+
+Other small improvements
+#+begin_src emacs-lisp
+(setq auto-save-default t)
+(setq which-key-idle-delay 0.25)
+(display-time-mode 1)
+#+end_src
+* Org-mode stuffs
+Setting org directory
+#+begin_src emacs-lisp
+(setq org-directory "~/org/")
+#+end_src
+
+Making small changes to org that make org more usable for notes and literate development
+#+begin_src emacs-lisp
+(after! org
+(setq org-format-latex-options (plist-put-org-format-latex-options :scale 2.0))
+(setq org-src-fontify-natively t)
+(add-hook 'org-mode-hook 'turn-on-flyspell))
+#+end_src
+
+Making org-super-agenda usable once i install this on wsl(eventually)
+#+begin_src emacs-lisp
+(use-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                          :time-grid t
+                                          :scheduled today)
+                                  (:name "Due today"
+                                          :deadline today)
+                                  (:name "Important"
+                                          :priority "A")
+                                  (:name "overdue"
+                                          :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Big Outcomes"
+                                         :tag "bo")))
+  :config
+  (org-super-agenda-mode))
+#+end_src
+
+making org bullets look silly
+#+begin_src emacs-lisp
+(after! org-superstar
+  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮")org-superstar-prettify-item-bullets t))
+#+end_src
+* Rust stuff
+setting up rust lsp stuffs
+#+begin_src emacs-lisp
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer
+        rustic-lsp-client 'eglot))
+#+end_src
+* Haskell things
+setting haskell lsp
