@@ -71,7 +71,8 @@
   :config
   (org-super-agenda-mode))
 (after! org
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0)))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  (setq org-src-fontify-natively t))
 
 
 (after! org-superstar

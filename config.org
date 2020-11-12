@@ -68,3 +68,7 @@ setting up rust lsp stuffs
 #+end_src
 * Haskell things
 setting haskell lsp
+#+begin_src emacs-lisp
+(setq lsp-haskell-process-path-hie "hie-wrapper")
+(add-hook 'haskell-mode-hook #'lsp)
+#+end_src
