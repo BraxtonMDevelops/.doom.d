@@ -47,18 +47,9 @@
                                          :tag "bo")))
   :config
   (org-super-agenda-mode))
-<<<<<<< HEAD
-=======
-(after! org
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
-  (setq org-src-fontify-natively t))
->>>>>>> e42f42c (made spelling work a bit better)
 
   (after! org-superstar
   (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
-
-(setq lsp-haskell-process-path-hie "hie-wrapper")
-(add-hook 'haskell-mode-hook #'lsp)
