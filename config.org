@@ -18,6 +18,25 @@ Other small improvements
 (setq which-key-idle-delay 0.25)
 (display-time-mode 1)
 #+end_src
+
+Spelling in Emacs
+#+begin_src emacs-lisp
+(setq ispell-dictionary "en-custom")
+(setq ispell-personal-dictionary (expand-file-name ".ispell_personal" doom-private-dir))
+#+end_src
+
+General LSP stuff
+#+begin_src emacs-lisp
+(after! lsp-ui
+  (setq lsp-ui-doc-enable 1)
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-show-with-cursor nil)
+  (setq lsp-ui-doc-max-width 200)
+  (setq lsp-ui-doc-max-height 50)
+  (setq lsp-ui-doc-use-webkit nil)
+  (setq lsp-ui-doc-border 'unspecified)
+  (setq lsp-ui-peek-enable 1))
+#+end_src
 * Org-mode stuffs
 Setting org directory
 #+begin_src emacs-lisp
@@ -27,9 +46,10 @@ Setting org directory
 Making small changes to org that make org more usable for notes and literate development
 #+begin_src emacs-lisp
 (after! org
-(setq org-format-latex-options (plist-put-org-format-latex-options :scale 2.0))
-(setq org-src-fontify-natively t)
-(add-hook 'org-mode-hook 'turn-on-flyspell))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  (setq org-src-fontify-natively t)
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
+  (setq org-startup-folded t))
 #+end_src
 
 Making org-super-agenda usable once i install this on wsl(eventually)
@@ -56,15 +76,16 @@ Making org-super-agenda usable once i install this on wsl(eventually)
 
 making org bullets look silly
 #+begin_src emacs-lisp
-(after! org-superstar
-  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮")org-superstar-prettify-item-bullets t))
+  (after! org-superstar
+  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
+
 #+end_src
+
 * Rust stuff
 setting up rust lsp stuffs
 #+begin_src emacs-lisp
 (after! rustic
-  (setq rustic-lsp-server 'rust-analyzer
-        rustic-lsp-client 'eglot))
+  (setq rustic-lsp-server 'rust-analyzer))
 #+end_src
 * Haskell things
 setting haskell lsp
