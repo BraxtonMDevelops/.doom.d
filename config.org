@@ -36,6 +36,9 @@ General LSP stuff
   (setq lsp-ui-doc-use-webkit nil)
   (setq lsp-ui-doc-border 'unspecified)
   (setq lsp-ui-peek-enable 1))
+(after! lsp
+  (setq lsp-enable-symbol-highlighting nil))
+
 #+end_src
 * Org-mode stuffs
 Setting org directory
