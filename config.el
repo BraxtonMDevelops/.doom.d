@@ -1,6 +1,6 @@
-  (setq doom-font (font-spec :family "Monofur Nerd Font Mono" :size 32))
-  (setq doom-theme 'doom-outrun-electric)
-  (setq display-line-numbers-type 'relative)
+(setq doom-font (font-spec :family "Monofur Nerd Font Mono" :size 32))
+(setq doom-theme 'doom-outrun-electric)
+(setq display-line-numbers-type 'relative)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -50,8 +50,8 @@
   :config
   (org-super-agenda-mode))
 
-  (after! org-superstar
-  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
+(after! org-superstar
+(setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
