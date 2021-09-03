@@ -1,6 +1,6 @@
-(setq doom-font (font-spec :family "Monofur Nerd Font Mono" :size 32))
-(setq doom-theme 'doom-outrun-electric)
-(setq display-line-numbers-type 'relative)
+  (setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
+  (setq doom-theme 'doom-outrun-electric)
+  (setq display-line-numbers-type 'relative)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -13,13 +13,14 @@
 
 (after! lsp-ui
   (setq lsp-ui-doc-enable 1)
-  (setq lsp-ui-doc-position 'at-point)
-  (setq lsp-ui-doc-show-with-cursor nil)
+  (setq! lsp-ui-doc-delay 0)
+  (setq! lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-show-with-cursor t)
   (setq lsp-ui-doc-max-width 200)
   (setq lsp-ui-doc-max-height 50)
   (setq lsp-ui-doc-use-webkit nil)
   (setq lsp-ui-doc-border 'unspecified)
-  (setq lsp-ui-peek-enable 1))
+  (setq! lsp-ui-peek-enable t))
 (after! lsp
   (setq lsp-enable-symbol-highlighting nil))
 
@@ -31,27 +32,26 @@
   (add-hook 'org-mode-hook 'turn-on-flyspell)
   (setq org-startup-folded t))
 
-(use-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq org-super-agenda-groups '((:name "Today"
-                                          :time-grid t
-                                          :scheduled today)
-                                  (:name "Due today"
-                                          :deadline today)
-                                  (:name "Important"
-                                          :priority "A")
-                                  (:name "overdue"
-                                          :deadline past)
-                                  (:name "Due soon"
-                                         :deadline future)
-                                  (:name "Big Outcomes"
-                                         :tag "bo")))
-  :config
-  (org-super-agenda-mode))
+;;(use-package! org-super-agenda
+ ;; :after org-agenda
+ ;; :init
+  ;;setq org-super-agenda-groups '((:name "Today"
+ ;;                                         :time-grid t
+   ;;                                       :scheduled today)
+    ;;                              (:name "Due today"
+     ;;                                     :deadline today)
+      ;;                            (:name "Important"
+        ;;                                  :priority "A")
+           ;;                       (:name "overdue"
+         ;;                                 :deadline past)
+       ;;                           (:name "Due soon"
+     ;;                                    :deadline future)
+   ;;                               (:name "Big Outcomes"
+         ;;                                :tag "bo")))
+ ;; :config
 
 (after! org-superstar
-(setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
+  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
