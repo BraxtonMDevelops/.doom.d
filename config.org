@@ -1,36 +1,36 @@
 #+TITLE: Config
 * General Settings
-Setting my font for Doom Emacs, and making it pretty
+**  Setting my font for Doom Emacs, and making it pretty
 #+begin_src emacs-lisp
   (setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
-  (setq doom-theme 'doom-outrun-electric)
+  (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
+  (setq edebug-print-length 'nil)
 #+end_src
 
-Makes Richard Stallman visit my Emacs
+**  Makes Richard Stallman visit my Emacs
 #+begin_src emacs-lisp
 (setq fancy-splash-image "~/Pictures/emacs.png")
 #+end_src
 
-Other small improvements
+**  Other small improvements
 #+begin_src emacs-lisp
 (setq auto-save-default t)
 (setq which-key-idle-delay 0.25)
 (display-time-mode 1)
 #+end_src
 
-Spelling in Emacs
+**  Spelling in Emacs
 #+begin_src emacs-lisp
-(setq ispell-dictionary "en-custom")
-(setq ispell-personal-dictionary (expand-file-name ".ispell_personal" doom-private-dir))
+;;(setq ispell-dictionary "en-custom")
+;;(setq ispell-personal-dictionary (expand-file-name ".ispell_personal" doom-private-dir))
 #+end_src
 
-General LSP stuff
+**  General LSP stuff
 #+begin_src emacs-lisp
 (after! lsp-ui
   (setq lsp-ui-doc-enable 1)
   (setq! lsp-ui-doc-delay 0)
-  (setq! lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-show-with-cursor t)
   (setq lsp-ui-doc-max-width 200)
   (setq lsp-ui-doc-max-height 50)
@@ -41,6 +41,23 @@ General LSP stuff
   (setq lsp-enable-symbol-highlighting nil))
 
 #+end_src
+
+**  Adding info-colors to improving reaidngs:
+Tell doom the package exists
+#+begin_src emacs-lisp :tangle packages.el
+(package! info-colors :pin "47ee73cc19b1049eef32c9f3e264ea7ef2aaf8a5")
+#+end_src
+
+Actually using the package
+#+begin_src emacs-lisp
+(use-package! info-colors
+  :hook (Info-selection . info-colors-fontify-node))
+#+end_src
+**  Making Infos no longer a popup
+#+begin_src emacs-lisp
+(set-popup-rules! '(("\\*info\\*" :ignore t)))
+#+end_src
+
 * Org-mode stuffs
 Setting org directory
 #+begin_src emacs-lisp
@@ -52,7 +69,7 @@ Making small changes to org that make org more usable for notes and literate dev
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-src-fontify-natively t)
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
+ ;; (add-hook 'org-mode-hook 'turn-on-flyspell)
   (setq org-startup-folded t))
 #+end_src
 

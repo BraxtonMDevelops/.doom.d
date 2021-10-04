@@ -1,6 +1,7 @@
   (setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
-  (setq doom-theme 'doom-outrun-electric)
+  (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
+  (setq edebug-print-length 'nil)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -8,13 +9,12 @@
 (setq which-key-idle-delay 0.25)
 (display-time-mode 1)
 
-(setq ispell-dictionary "en-custom")
-(setq ispell-personal-dictionary (expand-file-name ".ispell_personal" doom-private-dir))
+;;(setq ispell-dictionary "en-custom")
+;;(setq ispell-personal-dictionary (expand-file-name ".ispell_personal" doom-private-dir))
 
 (after! lsp-ui
   (setq lsp-ui-doc-enable 1)
   (setq! lsp-ui-doc-delay 0)
-  (setq! lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-show-with-cursor t)
   (setq lsp-ui-doc-max-width 200)
   (setq lsp-ui-doc-max-height 50)
@@ -24,12 +24,17 @@
 (after! lsp
   (setq lsp-enable-symbol-highlighting nil))
 
+(use-package! info-colors
+  :hook (Info-selection . info-colors-fontify-node))
+
+(set-popup-rules! '(("\\*info\\*" :ignore t)))
+
 (setq org-directory "~/org/")
 
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-src-fontify-natively t)
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
+ ;; (add-hook 'org-mode-hook 'turn-on-flyspell)
   (setq org-startup-folded t))
 
 ;;(use-package! org-super-agenda
