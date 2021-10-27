@@ -87,7 +87,7 @@ Making Keycast work in the modeline:
 * Org-mode stuffs
 Setting org directory
 #+begin_src emacs-lisp
-(setq org-directory "~/org/")
+(setq org-directory "~/Org/")
 #+end_src
 
 Making small changes to org that make org more usable for notes and literate development
