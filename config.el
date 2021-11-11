@@ -1,5 +1,5 @@
 (setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
-(setq doom-theme 'doom-gruvbox-light)
+(setq doom-theme 'doom-solarized-light)
 (setq display-line-numbers-type 'relative)
 (setq edebug-print-length 'nil)
 
