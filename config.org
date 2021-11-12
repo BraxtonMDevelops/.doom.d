@@ -3,7 +3,7 @@
 **  Setting my font for Doom Emacs, and making it pretty
 #+begin_src emacs-lisp
   (setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
-  (setq doom-theme 'doom-gruvbox-light)
+  (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
   (setq edebug-print-length 'nil)
 #+end_src
@@ -55,7 +55,8 @@ Actually using the package
 #+end_src
 **  Making Infos no longer a popup
 #+begin_src emacs-lisp
-(set-popup-rules! '(("\\*info\\*" :ignore t)))
+(set-popup-rules! '(("^\\*info\\*$" ; Info buffers
+                     :ignore t)))
 #+end_src
 **  Keycast for showing off Emacs
 Installing Keycast
@@ -82,6 +83,20 @@ Making Keycast work in the modeline:
     '(keycast-key :inherit custom-modified
                   :height 1.1
                   :weight)))
+#+end_src
+
+**  Modeline tweak to not show utf-8
+#+begin_src emacs-lisp
+(defun doom-modeline-conditional-buffer-encoding ()
+  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
+  (setq-local doom-modeline-buffer-encoding
+              (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
+                                 '(coding-category-undecided coding-category-utf-8))
+                           (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
+                t)))
+
+(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
+
 #+end_src
 
 * Org-mode stuffs
@@ -133,3 +148,4 @@ setting up rust lsp stuffs
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
 #+end_src
+
