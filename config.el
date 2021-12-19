@@ -61,7 +61,7 @@
 
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
 
-(setq org-directory "~/org/")
+(setq org-directory "~/Org/")
 
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
