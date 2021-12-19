@@ -1,7 +1,9 @@
-(setq doom-font (font-spec :family "VictorMono Nerd Font Mono" :size 32))
-(setq doom-theme 'doom-solarized-light)
-(setq display-line-numbers-type 'relative)
-(setq edebug-print-length 'nil)
+  (setq doom-font (font-spec :family "Liga BQN386 Unicode" :size 32))
+  (custom-set-faces! '(mode-line-active :inherit mode-line))
+  (setq doom-theme 'doom-solarized-light)
+  (setq display-line-numbers-type 'relative)
+  (setq edebug-print-length 'nil)
+  (setq global-emojify-mode t)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
