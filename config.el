@@ -1,9 +1,9 @@
-  (setq doom-font (font-spec :family "Liga BQN386 Unicode" :size 32))
+  (setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 33))
   (custom-set-faces! '(mode-line-active :inherit mode-line))
   (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
   (setq edebug-print-length 'nil)
-  (setq global-emojify-mode t)
+  (setq global-emojify-mode 'nil)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -88,7 +88,7 @@
  ;; :config
 
 (after! org-superstar
-  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
+  (setq org-superstar-headline-bullets-list'("☕" "📀" "☎" "👉" "🔭" "☯" "☮") org-superstar-prettify-item-bullets t))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))

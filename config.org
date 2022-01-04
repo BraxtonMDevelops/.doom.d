@@ -1,13 +1,14 @@
 #+TITLE: Config
+#+AUTHOR: Mjolnir
 * General Settings
-**  Setting my font for Doom Emacs, and making it pretty
+**  Setting my for Doom Emacs, and making it pretty
 #+begin_src emacs-lisp
-  (setq doom-font (font-spec :family "Liga BQN386 Unicode" :size 32))
+  (setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 33))
   (custom-set-faces! '(mode-line-active :inherit mode-line))
   (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
   (setq edebug-print-length 'nil)
-  (setq global-emojify-mode t)
+  (setq global-emojify-mode 'nil)
 #+end_src
 **  Makes Richard Stallman visit my Emacs
 #+begin_src emacs-lisp
@@ -139,7 +140,7 @@ Making org-super-agenda usable once i install this on wsl(eventually)
 making org bullets look silly
 #+begin_src emacs-lisp
 (after! org-superstar
-  (setq org-superstar-headline-bullets-list'("☕" "☀" "☎" "☞" "☭" "☯" "☮") org-superstar-prettify-item-bullets t))
+  (setq org-superstar-headline-bullets-list'("☕" "📀" "☎" "👉" "🔭" "☯" "☮") org-superstar-prettify-item-bullets t))
 
 #+end_src
 
@@ -150,3 +151,13 @@ setting up rust lsp stuffs
   (setq rustic-lsp-server 'rust-analyzer))
 #+end_src
 
+#+RESULTS:
+
+* Note-Taking Stuff
+As an opening note here, most of this may fall under [[Org mode stuffs][Org mode]] ,though I feel it has parts that make it distinct enough.
+** Reading in Emacs
+This will allow me to open a given book, *.epub*, or *.pdf* file and comfortably read it from the inside of Emacs. This should concert neatly with this section of the config as well, as maybe being a help for writing code.
+
+#+begin_src emacs-lisp :tangle packages.el
+
+#+end_src
