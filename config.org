@@ -52,7 +52,9 @@
 #+end_src
 
 **  Adding info-colors to improving reaidngs:
+
 Tell doom the package exists
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! info-colors :pin "47ee73cc19b1049eef32c9f3e264ea7ef2aaf8a5")
 #+end_src
@@ -63,10 +65,12 @@ Actually using the package
   :hook (Info-selection . info-colors-fontify-node))
 #+end_src
 **  Making Infos no longer a popup
+
 #+begin_src emacs-lisp
 (set-popup-rules! '(("^\\*info\\*$" ; Info buffers
                      :ignore t)))
 #+end_src
+
 **  Keycast for showing off Emacs
 Installing Keycast
 #+begin_src emacs-lisp :tangle packages.el
