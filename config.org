@@ -1,12 +1,12 @@
 #+TITLE: Config
 #+AUTHOR: Mjolnir
 * General Settings
-**  Setting my Font for Doom Emacs, and making it pretty
+* Setting my Font for Doom Emacs, and making it pretty
 
 #+begin_src emacs-lisp
-  (setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 33))
+  (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30))
   (custom-set-faces! '(mode-line-active :inherit mode-line))
-  (setq doom-theme 'doom-gruvbox-light)
+  (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
   (setq edebug-print-length 'nil)
   (setq global-emojify-mode 'nil)
