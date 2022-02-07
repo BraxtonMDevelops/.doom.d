@@ -1,22 +1,15 @@
 #+TITLE: Config
 #+AUTHOR: Mjolnir
 * General Settings
-** Setting my Font for Doom Emacs, and making it pretty
+* Setting my Font for Doom Emacs, and making it pretty
 
 #+begin_src emacs-lisp
-  (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30)
-        doom-theme 'doom-solarized-light
-        display-line-numbers-type 'relative
-        gamegrid-glyph-height-mm 10
-        edebug-print-length 'nil
-        global-emojify-mode 'nil
-        auth-sources '("~/.authinfo"))
-
+  (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30))
   (custom-set-faces! '(mode-line-active :inherit mode-line))
-  ;(setq doom-theme 'doom-solarized-light)
+  (setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
-  ;(setq edebug-print-length 'nil)
-  ;(setq global-emojify-mode 'nil)
+  (setq edebug-print-length 'nil)
+  (setq global-emojify-mode 'nil)
 #+end_src
 
 **  Ensure that Emacsql-sqlite is easy to find.
@@ -165,7 +158,7 @@ making org bullets look silly
 #+end_src
 
 * Rust stuff
-setting up rust lsp stuffs
+Setting up Rust LSP Stuffs
 #+begin_src emacs-lisp
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
