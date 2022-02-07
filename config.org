@@ -1,15 +1,22 @@
 #+TITLE: Config
 #+AUTHOR: Mjolnir
 * General Settings
-* Setting my Font for Doom Emacs, and making it pretty
+** Setting my Font for Doom Emacs, and making it pretty
 
 #+begin_src emacs-lisp
-  (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30))
+  (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 30)
+        doom-theme 'doom-solarized-light
+        display-line-numbers-type 'relative
+        gamegrid-glyph-height-mm 10
+        edebug-print-length 'nil
+        global-emojify-mode 'nil
+        auth-sources '("~/.authinfo"))
+
   (custom-set-faces! '(mode-line-active :inherit mode-line))
-  (setq doom-theme 'doom-solarized-light)
+  ;(setq doom-theme 'doom-solarized-light)
   (setq display-line-numbers-type 'relative)
-  (setq edebug-print-length 'nil)
-  (setq global-emojify-mode 'nil)
+  ;(setq edebug-print-length 'nil)
+  ;(setq global-emojify-mode 'nil)
 #+end_src
 
 **  Ensure that Emacsql-sqlite is easy to find.
@@ -106,10 +113,7 @@ Making Keycast work in the modeline:
               (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
                                  '(coding-category-undecided coding-category-utf-8))
                            (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
-                t)))
-
-(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
-
+t)))
 #+end_src
 
 * Org-mode stuffs
