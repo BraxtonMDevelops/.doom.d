@@ -68,19 +68,18 @@
               (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
                                  '(coding-category-undecided coding-category-utf-8))
                            (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
-                t)))
-
-(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
+t)))
 
 (setq org-directory "~/Org/")
 
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-src-fontify-natively t
-        org-ellipsis " ▾ "
-        org-startup-folded t
-        org-hide-emphasis-markers t))
- ;; (add-hook 'org-mode-hook 'turn-on-flyspell)
+        org-ellipsis " ▾"
+        org-startup-folded t)
+        org-hide-emphasis-markers t) ; Replacing org-hide-emphasis-markers with org-appear.
+    (remove-hook 'org-mode-hook 'org-cdlatex-mode)
+    ;; Temporary bit of code to keep cd-latex-mode out of the way when I don't want it, as its bind is a bit painful.
 
 ;;(use-package! org-super-agenda
  ;; :after org-agenda
@@ -102,6 +101,13 @@
 
 (after! org-superstar
   (setq org-superstar-headline-bullets-list'("🍺" "📀" "📠" "👉" "🔭" "🔮" "☄️") org-superstar-prettify-item-bullets t))
+
+(use-package! org-appear
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autolinks t))
+  ;;(run-at-time nil nil #'org-appear--set-elements))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
