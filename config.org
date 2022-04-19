@@ -60,11 +60,6 @@ If you are somehow unaware of his [[https://tecosaur.github.io/emacs-config/conf
   (setq lsp-enable-symbol-highlighting nil))
 
 #+end_src
-Fixing an odd bug with lua lsp server
-#+begin_src emacs-lisp
-  (setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
-	lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
-#+end_src
 
 **  Adding info-colors to improving reaidngs:
 
@@ -124,24 +119,24 @@ Making Keycast work in the modeline:
 t)))
 #+end_src
 
-* Org-mode Stuffs
+* Org-mode stuffs
 Setting org directory
 #+begin_src emacs-lisp
 (setq org-directory "~/Org/")
 #+end_src
 
-** Making small changes to org that make org more usable for notes and literate development
+Making small changes to org that make org more usable for notes and literate development
 #+begin_src emacs-lisp
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-src-fontify-natively t
-        org-ellipsis " ▾"
-        org-startup-folded t)
-        org-hide-emphasis-markers t) ; Replacing org-hide-emphasis-markers with org-appear.
-    (remove-hook 'org-mode-hook 'org-cdlatex-mode)
-    ;; Temporary bit of code to keep cd-latex-mode out of the way when I don't want it, as its bind is a bit painful.
+        org-ellipsis " ▾ "
+        org-startup-folded t
+        org-hide-emphasis-markers t))
+ ;; (add-hook 'org-mode-hook 'turn-on-flyspell)
 #+end_src
-** TODO Making org-super-agenda usable once i install this on wsl(eventually)
+
+Making org-super-agenda usable once i install this on wsl(eventually)
 #+begin_src emacs-lisp
 ;;(use-package! org-super-agenda
  ;; :after org-agenda
@@ -162,29 +157,14 @@ Setting org directory
  ;; :config
 #+end_src
 
-** Making Org Bullets Look Silly
+making org bullets look silly
 #+begin_src emacs-lisp
 (after! org-superstar
   (setq org-superstar-headline-bullets-list'("🍺" "📀" "📠" "👉" "🔭" "🔮" "☄️") org-superstar-prettify-item-bullets t))
 
 #+end_src
 
-** Improving emphasis markers in Org
-Block of code installing latest version as of current day.
-#+begin_src emacs-lisp :tangle packages.el
-(package! org-appear :recipe (:host github :repo "awth13/org-appear")
-  :pin "8dd1e564153d8007ebc4bb4e14250bde84e26a34")
-#+end_src
-Configuration of ~org-appear~
-#+begin_src emacs-lisp
-(use-package! org-appear
-  :hook (org-mode . org-appear-mode)
-  :config
-  (setq org-appear-autoemphasis t
-        org-appear-autolinks t))
-  ;;(run-at-time nil nil #'org-appear--set-elements))
-#+end_src
-* Rust Stuff
+* Rust stuff
 Setting up Rust LSP Stuffs
 #+begin_src emacs-lisp
 (after! rustic
@@ -195,10 +175,11 @@ Setting up Rust LSP Stuffs
 As an opening note here, most of this may fall under [[Org mode stuffs][Org mode]], though I feel it has parts that make it distinct enough.
 ** Reading in Emacs
 This will allow me to open a given book, *.epub*, or *.pdf* file and comfortably read it from the inside of Emacs. This should concert neatly with this section of the config as well, as maybe being a help for writing code.
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! nov :pin "b3c7cc28e95fe25ce7b443e5f49e2e45360944a3")
 #+end_src
-*Crack*
+
 Stealing a chunk of tec's config for nov, to make it better to use.
 
 #+begin_src emacs-lisp
