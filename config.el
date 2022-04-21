@@ -76,8 +76,8 @@ t)))
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (setq org-src-fontify-natively t
         org-ellipsis " ▾"
-        org-startup-folded t)
-        org-hide-emphasis-markers t) ; Replacing org-hide-emphasis-markers with org-appear.
+        org-startup-folded t
+        org-hide-emphasis-markers 1)) ; replacing org-hide-emphasis-markers with org-appear.
     (remove-hook 'org-mode-hook 'org-cdlatex-mode)
     ;; Temporary bit of code to keep cd-latex-mode out of the way when I don't want it, as its bind is a bit painful.
 
@@ -106,8 +106,8 @@ t)))
   :hook (org-mode . org-appear-mode)
   :config
   (setq org-appear-autoemphasis t
-        org-appear-autolinks t))
-  ;;(run-at-time nil nil #'org-appear--set-elements))
+        org-appear-autolinks t)
+  (run-at-time nil nil #'org-appear--set-elements))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
