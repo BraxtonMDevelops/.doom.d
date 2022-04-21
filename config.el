@@ -34,8 +34,8 @@
 (after! lsp
   (setq lsp-enable-symbol-highlighting nil))
 
-  (setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
-	lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
+(setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
+      lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
 
 (use-package! info-colors
   :hook (Info-selection . info-colors-fontify-node))
