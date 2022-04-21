@@ -1,7 +1,7 @@
 #+TITLE: Config
 #+AUTHOR: Mjolnir
-Loads of this config is "inspired" by Tecosaur's emacs config. and by inspired I mean blatantly stolen.
-If you are somehow unaware of his [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
+Much of this config is "inspired" by Tecosaur's emacs config. and by inspired I mean blatantly stolen.
+If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
 * General Settings
 **  Setting my Font for Doom Emacs, and making it pretty
 
@@ -22,8 +22,8 @@ If you are somehow unaware of his [[https://tecosaur.github.io/emacs-config/conf
   ;(setq global-emojify-mode 'nil)
 #+end_src
 
-**  Ensure that Emacsql-sqlite is easy to find.
-
+** Ensure that Emacsql-sqlite is easy to find.
+Subject to nonexistence now that I may not use ~NixOS~ as primary.
 #+begin_src emacs-lisp :tangle packages.el
 (package! emacsql-sqlite :built-in 'prefer)
 #+end_src
@@ -129,8 +129,7 @@ Setting org directory
 #+begin_src emacs-lisp
 (setq org-directory "~/Org/")
 #+end_src
-
-** Making small changes to org that make org more usable for notes and literate development
+** Making small changes to Org
 #+begin_src emacs-lisp
 (after! org
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
@@ -141,7 +140,7 @@ Setting org directory
     (remove-hook 'org-mode-hook 'org-cdlatex-mode)
     ;; Temporary bit of code to keep cd-latex-mode out of the way when I don't want it, as its bind is a bit painful.
 #+end_src
-** TODO Making org-super-agenda usable once i install this on wsl(eventually)
+** TODO Making Org Souper Agenda usable 
 #+begin_src emacs-lisp
 ;;(use-package! org-super-agenda
  ;; :after org-agenda
@@ -185,7 +184,7 @@ Configuration of ~org-appear~
   ;;(run-at-time nil nil #'org-appear--set-elements))
 #+end_src
 * Rust Stuff
-Setting up Rust LSP Stuffs
+Setting up /Rust/ LSP Stuffs
 #+begin_src emacs-lisp
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
