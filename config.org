@@ -4,7 +4,6 @@ Much of this config is "inspired" by Tecosaur's emacs config. and by inspired I 
 If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
 * General Settings
 **  Setting my Font for Doom Emacs, and making it pretty
-
 #+begin_src emacs-lisp
   (setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)
         doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
