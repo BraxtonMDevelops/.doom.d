@@ -1,17 +1,17 @@
-  (setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)
-        doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
-        doom-theme 'doom-dracula
-        display-line-numbers-type 'relative
-        gamegrid-glyph-height-mm 10
-        edebug-print-length 'nil
-        global-emojify-mode 'nil
-        auth-sources '("~/.authinfo"))
+(setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)
+      doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
+      doom-theme 'doom-dracula
+      display-line-numbers-type 'relative
+      gamegrid-glyph-height-mm 10
+      edebug-print-length 'nil
+      global-emojify-mode 'nil
+      auth-sources '("~/.authinfo"))
 
-  (custom-set-faces! '(mode-line-active :inherit mode-line))
-  ;(setq doom-theme 'doom-solarized-light)
-  (setq display-line-numbers-type 'relative)
-  ;(setq edebug-print-length 'nil)
-  ;(setq global-emojify-mode 'nil)
+(custom-set-faces! '(mode-line-active :inherit mode-line))
+;(setq doom-theme 'doom-solarized-light)
+(setq display-line-numbers-type 'relative)
+;(setq edebug-print-length 'nil)
+;(setq global-emojify-mode 'nil)
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -34,8 +34,8 @@
 (after! lsp
   (setq lsp-enable-symbol-highlighting nil))
 
-  (setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
-	lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
+(setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
+      lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
 
 (use-package! info-colors
   :hook (Info-selection . info-colors-fontify-node))
