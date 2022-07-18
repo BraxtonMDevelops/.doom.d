@@ -1,6 +1,6 @@
 (setq ;doom-font (font-spec :family "Rec Mono Duotone" :size 24)
       doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
-      doom-theme 'doom-dracula
+      doom-theme 'doom-lantern
       display-line-numbers-type 'relative
       gamegrid-glyph-height-mm 10
       edebug-print-length 'nil

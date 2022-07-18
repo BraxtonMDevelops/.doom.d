@@ -1,7 +1,7 @@
 #+TITLE: Config
 #+AUTHOR: Mjolnir
 Much of this config is "inspired" by Tecosaur's emacs config. and by inspired I mean blatantly stolen.
-If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
+If you are somehow unaware of his [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
 * General Settings
 **  Unpinning a few packages
 #+begin_src emacs-lisp :tangle packages.el
@@ -11,7 +11,7 @@ If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/confi
 #+begin_src emacs-lisp
   (setq ;doom-font (font-spec :family "Rec Mono Duotone" :size 24)
         doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
-        doom-theme 'doom-dracula
+        doom-theme 'doom-lantern
         display-line-numbers-type 'relative
         gamegrid-glyph-height-mm 10
         edebug-print-length 'nil
