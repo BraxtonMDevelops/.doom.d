@@ -1,4 +1,4 @@
-(setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)
+(setq ;doom-font (font-spec :family "Rec Mono Duotone" :size 24)
       doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
       doom-theme 'doom-dracula
       display-line-numbers-type 'relative
@@ -7,11 +7,11 @@
       global-emojify-mode 'nil
       auth-sources '("~/.authinfo"))
 
-(custom-set-faces! '(mode-line-active :inherit mode-line))
-;(setq doom-theme 'doom-solarized-light)
-(setq display-line-numbers-type 'relative)
-;(setq edebug-print-length 'nil)
-;(setq global-emojify-mode 'nil)
+;(custom-set-faces! '(mode-line-active :inherit mode-line))
+
+(if (eq system-type 'darwin)
+    (setq doom-font (font-spec :family "Rec Mono Duotone" :size 24))
+    '(setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)))
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
@@ -43,24 +43,9 @@
 (set-popup-rules! '(("^\\*info\\*$" ; Info buffers
                      :ignore t)))
 
-(use-package! keycast
-  :commands keycast-mode
-  :config
-  (define-minor-mode keycast-mode
-    "Show current command and its key binding in the mode line."
-    :global t
-    (if keycast-mode
-        (progn
-          (add-hook 'pre-command-hook 'keycast--update t)
-          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
-      (remove-hook 'pre-command-hook 'keycast--update)
-      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
-  (custom-set-faces!
-    '(keycast-command :inherit doom-modeline-debug
-                      :height 0.9)
-    '(keycast-key :inherit custom-modified
-                  :height 1.1
-                  :weight)))
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta))
 
 (defun doom-modeline-conditional-buffer-encoding ()
   "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"

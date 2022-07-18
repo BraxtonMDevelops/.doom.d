@@ -3,9 +3,13 @@
 Much of this config is "inspired" by Tecosaur's emacs config. and by inspired I mean blatantly stolen.
 If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/config.html][emacs config]], please go read as much of it as you can as there are loads of great bits.
 * General Settings
-**  Setting my Font for Doom Emacs, and making it pretty
+**  Unpinning a few packages
+#+begin_src emacs-lisp :tangle packages.el
+(unpin! doom-themes)
+#+end_src
+**  Making Doom Emacs Look Pretty
 #+begin_src emacs-lisp
-  (setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)
+  (setq ;doom-font (font-spec :family "Rec Mono Duotone" :size 24)
         doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
         doom-theme 'doom-dracula
         display-line-numbers-type 'relative
@@ -14,14 +18,17 @@ If you are somehow unaware of it [[https://tecosaur.github.io/emacs-config/confi
         global-emojify-mode 'nil
         auth-sources '("~/.authinfo"))
 
-  (custom-set-faces! '(mode-line-active :inherit mode-line))
-  ;(setq doom-theme 'doom-solarized-light)
-  (setq display-line-numbers-type 'relative)
-  ;(setq edebug-print-length 'nil)
-  ;(setq global-emojify-mode 'nil)
+  ;(custom-set-faces! '(mode-line-active :inherit mode-line))
+#+end_src
+*** Fonting most of the things
+As I learned installing my config on Mac, different machines may require different font sizes so we set that up here.
+#+begin_src emacs-lisp
+(if (eq system-type 'darwin)
+    (setq doom-font (font-spec :family "Rec Mono Duotone" :size 24))
+    '(setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)))
 #+end_src
 
-** Ensure that Emacsql-sqlite is easy to find.
+**  Ensure that Emacsql-sqlite is easy to find.
 Subject to nonexistence now that I may not use ~NixOS~ as primary.
 #+begin_src emacs-lisp :tangle packages.el
 (package! emacsql-sqlite :built-in 'prefer)
@@ -84,34 +91,12 @@ Actually using the package
 (set-popup-rules! '(("^\\*info\\*$" ; Info buffers
                      :ignore t)))
 #+end_src
-
-**  Keycast for showing off Emacs
-Installing Keycast
-#+begin_src emacs-lisp :tangle packages.el
-(package! keycast :pin "04ba7519f34421c235bac458f0192c130f732f12")
-#+end_src
-Making Keycast work in the modeline:
+**  MacOS specific changes
 #+begin_src emacs-lisp
-(use-package! keycast
-  :commands keycast-mode
-  :config
-  (define-minor-mode keycast-mode
-    "Show current command and its key binding in the mode line."
-    :global t
-    (if keycast-mode
-        (progn
-          (add-hook 'pre-command-hook 'keycast--update t)
-          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
-      (remove-hook 'pre-command-hook 'keycast--update)
-      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
-  (custom-set-faces!
-    '(keycast-command :inherit doom-modeline-debug
-                      :height 0.9)
-    '(keycast-key :inherit custom-modified
-                  :height 1.1
-                  :weight)))
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta))
 #+end_src
-
 **  Modeline tweak to not show utf-8
 #+begin_src emacs-lisp
 (defun doom-modeline-conditional-buffer-encoding ()
