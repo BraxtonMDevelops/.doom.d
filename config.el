@@ -11,7 +11,7 @@
 
 (if (eq system-type 'darwin)
     (setq doom-font (font-spec :family "Rec Mono Duotone" :size 24))
-    '(setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)))
+    (setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)))
 
 (setq fancy-splash-image "~/Pictures/emacs.png")
 
