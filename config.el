@@ -1,19 +1,20 @@
-(setq ;doom-font (font-spec :family "Rec Mono Duotone" :size 24)
-      doom-variable-pitch-font (font-spec :family "Recursive Sans Casual Static" :size 31)
-      doom-theme 'doom-lantern
+(setq ;doom-font (font-spec :family "VictorMono Nerd Font" :size 24)
+      doom-variable-pitch-font (font-spec :family "Jost*" :size 33)
+      ;;doom-unicode-font(font-spec :family "Noto Color Emoji")
+      doom-emoji-font(font-spec :family "Noto Color Emoji")
+      doom-theme 'doom-rouge
       display-line-numbers-type 'relative
-      gamegrid-glyph-height-mm 10
-      edebug-print-length 'nil
-      global-emojify-mode 'nil
+      ;gamegrid-glyph-height-mm 10
+      ;edebug-print-length 'nil
+      global-emojify-mode 't
       auth-sources '("~/.authinfo"))
-
 ;(custom-set-faces! '(mode-line-active :inherit mode-line))
 
 (if (eq system-type 'darwin)
-    (setq doom-font (font-spec :family "Rec Mono Duotone" :size 24))
-    (setq doom-font (font-spec :family "Rec Mono Duotone" :size 28)))
+    (setq doom-font (font-spec :family "Maple Mono NF" :size 24))
+    (setq doom-font (font-spec :family "Maple Mono NF" :size 30)))
 
-(setq fancy-splash-image "~/Pictures/emacs.png")
+(setq fancy-splash-image "~/.config/doom/emacs.png")
 
 (setq auto-save-default t)
 (setq which-key-idle-delay 0.25)
@@ -34,26 +35,18 @@
 (after! lsp
   (setq lsp-enable-symbol-highlighting nil))
 
-(setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
-      lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-sumneko-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
-
-(use-package! info-colors
-  :hook (Info-selection . info-colors-fontify-node))
+(setq lsp-clients-lua-language-server-bin (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-lua-language-server-*/share/lua-language-server/bin/lua-language-server")))
+	lsp-clients-lua-language-server-main-location (replace-regexp-in-string "[()]" "" (format "%s" (file-expand-wildcards "/nix/store/*-lua-language-server-*/share/lua-language-server/bin/main.lua"))))
 
 (set-popup-rules! '(("^\\*info\\*$" ; Info buffers
                      :ignore t)))
 
+(use-package! info-colors
+  :hook (Info-selection . info-colors-fontify-node))
+
 (when (eq system-type 'darwin)
   (setq mac-option-modifier nil
         mac-command-modifier 'meta))
-
-(defun doom-modeline-conditional-buffer-encoding ()
-  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
-  (setq-local doom-modeline-buffer-encoding
-              (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
-                                 '(coding-category-undecided coding-category-utf-8))
-                           (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
-t)))
 
 (setq org-directory "~/Org/")
 
@@ -85,7 +78,7 @@ t)))
  ;; :config
 
 (after! org-superstar
-  (setq org-superstar-headline-bullets-list'("🍺" "📀" "📠" "👉" "🔭" "🔮" "☄️") org-superstar-prettify-item-bullets t))
+  (setq org-superstar-headline-bullets-list'("🍺" "📀" "📠" "👉" "🔭" "🔮" "🛬") org-superstar-prettify-item-bullets t))
 
 (use-package! org-appear
   :hook (org-mode . org-appear-mode)
@@ -96,6 +89,8 @@ t)))
 
 (after! rustic
   (setq rustic-lsp-server 'rust-analyzer))
+
+
 
 (use-package! nov
   :mode ("\\.epub\\'" . nov-mode)
