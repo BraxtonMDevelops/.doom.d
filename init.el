@@ -26,25 +26,26 @@
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-       (vertico +icons)           ; the search engine of the future
+       (vertico +icons
+                +childframe)           ; the search engine of the future
        :ui
-       ;;deft              ; notational velocity for Emacs
+       ;;deft            ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
+       dashboard         ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;;(emoji +unicode)  ; 🙂
+       ;;(emoji +unicode) ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
-       ;;indent-guides     ; highlighted indent columns
+       ;;indent-guides   ; highlighted indent columns
        ligatures         ; ligatures and symbols to make your code pretty again
-       ;;minimap           ; show a map of the code on the side
+       ;;minimap         ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
-       ;;nav-flash         ; blink cursor line after big motions
-       ;;neotree           ; a project drawer, like NERDTree for vim
+       ;;nav-flash       ; blink cursor line after big motions
+       ;;neotree         ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;;tabs              ; a tab bar for Emacs
-       (treemacs +lsp)          ; a project drawer, like neotree but cooler
+       (popup +defaults) ; tame sudden yet inevitable temporary windows
+       ;;tabs            ; a tab bar for Emacs
+       treemacs   ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -53,7 +54,7 @@
        zen               ; distraction-free coding or writing
 
        :editor
-                                        ;(meow +qwerty +override +leader) ; It's Meow Ming
+       ;;(meow +qwerty +override +leader) ; It's Meow Ming ;Test Driveing Meow.
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
@@ -66,11 +67,15 @@
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
+       
 
        :emacs
-       (dired +icons)    ; making dired pretty [functional]
+       (dired +dirvish
+              +icons)    ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
+       ;;eww             ; The internet is disgusting
        (ibuffer +icons)  ; interactive buffer management
+       tramp             ; remote files at your arthritic fingertips
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -86,27 +91,28 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible           ; Writes a PhD for you (citation needed)
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       ;;ansible
+       ;;biblio            ; Writes a PhD for you (citation needed)
+       ;;collab            ; buffers with friends
+       ;;debugger          ; stepping through code, to help you add bugs
        direnv
        ;;docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
-       ein               ; tame Jupyter notebooks with emacs
+       editorconfig        ; let someone else argue about tabs vs spaces
+       ein                 ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       (lsp +peek)
+       ;;llm               ; When I said you needed firends, I didn't mean...
+       (lsp +eglot)        ; M-x vscode 
        ;;macos             ; MacOS-specific commands
-       (magit +forge); a git porcelain for Emacs
+       (magit +forge)      ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
-       rgb               ; creating color strings
-       ;;taskrunner        ; taskrunner for all your projects
+       pdf                 ; pdf enhancements
+       rgb                 ; creating color strings
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       tree-sitter       ; syntax and parsing, sitting in a tree...
+       tree-sitter         ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -114,10 +120,11 @@
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
+       ;;ada               ; In strong typing we (blindly) trust
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       ;;(cc +lsp)                ; C > C++ == 1
-       (clojure +lsp)           ; java with a lisp
+       ;;(cc +lsp)         ; C > C++ == 1
+       (clojure +lsp +tree-sitter)           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -125,39 +132,43 @@
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
-       (elixir +lsp
-               +tree-sitter)      ; erlang done right
-       ;;(elm +lsp)              ; care for a cup of TEA?
-       emacs-lisp ; drown in parentheses
+       (elixir +lsp        ; erlang done right
+               +tree-sitter)
+       ;;(elm +lsp)        ; care for a cup of TEA?
+       emacs-lisp          ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
-       (ess +lsp)
+       (ess +lsp)          ; emacs speaks statistics
+       ;;factor
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
        ;;(go +lsp)         ; the hipster dialect
        ;;(graphql +lsp)    ; Give queries a REST
-       (haskell +dante +lsp)  ; a language that's lazier than I am
+       ;;(haskell +dante +lsp)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
-       ;;(java +lsp) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;janet             ; Fun fact: Janet is me!
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
+       (javascript +lsp +tree-sitter)   ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        (latex
         +latexmk
         +cdlatex
-        +fold)     ; writing papers in Emacs has never been so fun
+        +fold)             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
-       (lua +lsp)               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       ;;(lua +lsp)        ; one-based indices? one-based indices
+       markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       (nix +lsp)              ; I hereby declare "nix geht mehr!"
+       (nix +lsp
+            +tree-sitter)  ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +roam2 +noter)              ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
+       (org +pretty +roam +noter +journal) ; organize your plain life in plain text
+       (php +lsp              ; perl's insecure younger brother
+            +tree-sitter)
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp +pyright)            ; beautiful is better than ugly
@@ -167,17 +178,19 @@
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails +lsp)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       ;;(scala +lsp)        ; java, but good
-       ;;(scheme +guile)   ; a fully conniving family of lisps
-       sh                  ; she sells {ba,z,fi}sh shells on the C xor
+       (rust +lsp +tree-sitter)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;scad              ; trust the preview, regret the render
+       ;;(scala +lsp)      ; java, but good
+       (scheme +guile)     ; a fully conniving family of lisps
+       (sh +fish +lsp)     ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
-       yaml              ; JSON, but readable
-       (zig +)               ; C, but simpler
+       (web +lsp +tree-sitter)              ; the tubes
+       ;;yaml              ; JSON, but readable
+       (zig +lsp
+            +tree-sitter)               ; C, but simpler
 
        :email
        ;;(mu4e +org +gmail)

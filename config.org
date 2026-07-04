@@ -34,7 +34,8 @@ As I learned installing my config on Mac, different machines may require differe
 **  Ensure that Emacsql-sqlite is easy to find.
 Subject to nonexistence now that I may not use ~NixOS~ as primary.
 #+begin_src emacs-lisp :tangle packages.el
-(package! emacsql-sqlite :built-in 'prefer)
+
+;;(package! emacsql-sqlite :built-in 'prefer)
 #+end_src
 **  Makes Richard Stallman visit my Emacs
 #+begin_src emacs-lisp
@@ -169,6 +170,9 @@ TODO Write this.
 #+begin_src emacs-lisp
 
 #+end_src
+* Meow Custom
+f
+* Lisp Stuff
 * Note-Taking Stuff
 As an opening note here, most of this may fall under [[Org mode stuffs][Org mode]], though I feel it has parts that make it distinct enough.
 ** Reading in Emacs
