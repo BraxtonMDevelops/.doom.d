@@ -44,6 +44,7 @@
        ;;neotree         ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults) ; tame sudden yet inevitable temporary windows
+       (smooth-scroll +interpolate)    ; tame sudden yet inevitable temporary windows
        ;;tabs            ; a tab bar for Emacs
        treemacs   ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
@@ -66,7 +67,7 @@
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+       word-wrap         ; soft wrapping with language-aware indent
        
 
        :emacs
@@ -80,10 +81,11 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       eshell            ; the elisp shell that works everywhere
+       eshell              ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       vterm             ; the best terminal emulation in Emacs
+       vterm               ; almost the best terminal emulation in Emacs
+       (ghostel +everywhere)           ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -94,7 +96,7 @@
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       ;;debugger          ; stepping through code, to help you add bugs
+       debugger          ; stepping through code, to help you add bugs
        direnv
        ;;docker
        editorconfig        ; let someone else argue about tabs vs spaces
@@ -160,7 +162,7 @@
         +fold)             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
-       ;;(lua +lsp)        ; one-based indices? one-based indices
+       (lua +lsp +tree-sitter)        ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        (nix +lsp

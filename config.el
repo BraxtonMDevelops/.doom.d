@@ -2,7 +2,7 @@
       doom-variable-pitch-font (font-spec :family "Jost*" :size 33)
       ;;doom-unicode-font(font-spec :family "Noto Color Emoji")
       doom-emoji-font(font-spec :family "Noto Color Emoji")
-      doom-theme 'doom-rouge
+      doom-theme 'doom-monokai-ristretto
       display-line-numbers-type 'relative
       ;gamegrid-glyph-height-mm 10
       ;edebug-print-length 'nil
@@ -10,11 +10,11 @@
       auth-sources '("~/.authinfo"))
 ;(custom-set-faces! '(mode-line-active :inherit mode-line))
 
+(setq fancy-splash-image "~/.config/doom/emacs.png")
+
 (if (eq system-type 'darwin)
     (setq doom-font (font-spec :family "Maple Mono NF" :size 24))
-    (setq doom-font (font-spec :family "Maple Mono NF" :size 30)))
-
-(setq fancy-splash-image "~/.config/doom/emacs.png")
+    (setq doom-font (font-spec :family "Maple Mono NF" :size 22)))
 
 (setq auto-save-default t)
 (setq which-key-idle-delay 0.25)
@@ -77,8 +77,9 @@
          ;;                                :tag "bo")))
  ;; :config
 
-(after! org-superstar
-  (setq org-superstar-headline-bullets-list'("🍺" "📀" "📠" "👉" "🔭" "🔮" "🛬") org-superstar-prettify-item-bullets t))
+(after! org-modern
+  (setq org-modern-star 'replace)
+  (setq org-modern-replace-stars '("🍺" "📀" "📠" "👉" "🔭" "🔮" "🛬")))
 
 (use-package! org-appear
   :hook (org-mode . org-appear-mode)
@@ -91,6 +92,140 @@
   (setq rustic-lsp-server 'rust-analyzer))
 
 
+
+(use-package surround)
+(defun meow-setup ()
+  (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+
+  (defalias 'surround-keymap surround-keymap)
+
+  (meow-motion-define-key
+   '("SPC" . doom/leader)
+   '("j" . meow-next)
+   '("k" . meow-prev)
+   '("<escape>" . doom/escape))
+
+  (meow-normal-define-key
+   '("SPC" . doom/leader)
+   '("0" . meow-expand-0)
+   '("9" . meow-expand-9)
+   '("8" . meow-expand-8)
+   '("7" . meow-expand-7)
+   '("6" . meow-expand-6)
+   '("5" . meow-expand-5)
+   '("4" . meow-expand-4)
+   '("3" . meow-expand-3)
+   '("2" . meow-expand-2)
+   '("1" . meow-expand-1)
+   '("-" . negative-argument)
+   '(";" . meow-reverse)
+   '("," . meow-inner-of-thing)
+   '("." . meow-bounds-of-thing)
+   '("<" . meow-beginning-of-thing)
+   '(">" . meow-end-of-thing)
+   '("a" . meow-append)
+   '("A" . meow-open-below)
+   '("b" . meow-back-word)
+   '("B" . meow-back-symbol)
+   '("c" . cua-copy-region)
+   '("d" . meow-delete)
+   '("D" . meow-backward-delete)
+   '("e" . meow-next-word)
+   '("E" . meow-next-symbol)
+   '("f" . avy-goto-word-1)
+   '("F" . anzu-query-replace)
+   '("g" . meow-cancel-selection)
+   '("G" . meow-grab)
+   '("h" . meow-left)
+   '("H" . meow-left-expand)
+   '("i" . meow-insert)
+   '("I" . meow-open-above)
+   '("j" . meow-next)
+   '("J" . meow-next-expand)
+   '("k" . meow-prev)
+   '("K" . meow-prev-expand)
+   '("l" . meow-right)
+   '("L" . meow-right-expand)
+   '("m" . meow-join)
+   '("M" . meow-kmacro-matches)
+   '("n" . meow-search)
+   '("o" . meow-block)
+   '("O" . +fold/open-all)
+   '("p" . cua-paste)
+   '("P" . consult-yank-from-kill-ring)
+   '("q" . meow-quit)
+   '("r" . meow-pop-or-unpop-to-mark)
+   '("R" . rectangle-mark-mode)
+   '("s" . meow-change)
+   '("S" . +fold/close-all)
+   '("t" . meow-find)
+   '("T" . +fold/toggle)
+   '("u" . undo)
+   '("U" . undo-redo)
+   '("v" . meow-visit)
+   '("V" . mc/mark-all-dwim)
+   '("w" . meow-mark-word)
+   '("W" . meow-mark-symbol)
+   '("x" . cua-cut-region)
+   '("X" . meow-kill-whole-line)
+   '("y" . kmacro-start-macro)
+   '("Y" . meow-end-or-call-kmacro)
+   '("z" . meow-line)
+   '("Z" . meow-goto-line)
+   '("/" . +default/search-buffer)
+   '("?" . +vertico/search-symbol-at-point)
+   '("'" . surround-keymap)
+   '("\"" . exchange-point-and-mark)
+   '("=" . meow--eval-sexp)
+   '("[" . sp-backward-sexp)
+   '("]" . sp-forward-sexp)
+   '("{" . sp-backward-up-sexp)
+   '("}" . sp-down-sexp)
+   '("|" . bookmark-set)
+   '("\\" . bookmark-jump)
+   '(":" . execute-extended-command)
+   '("#" . string-inflection-all-cycle)
+;   '("@" . jinx-correct) Disable as spellcheck is not enabled
+;   '("!" . jinx-next)
+   '("^" . sp-slurp-hybrid-sexp)
+   '("_" . sp-forward-barf-sexp)
+   '("$" . meow-universal-argument)
+   '("<escape>" . doom/escape)))
+
+(use-package! meow
+  :config
+  (meow-setup)
+  (add-to-list 'meow-mode-state-list '(+doom-dashboard-mode . normal))
+  (add-to-list 'meow-mode-state-list '(calendar-mode . motion)))
+  ;(meow-global-mode))
+;(load! meow.el)
+(use-package! meow-tree-sitter
+  :after meow
+  :config
+  (meow-tree-sitter-register-defaults))
+
+(use-package! meow-ghostel
+  :after (ghostel meow)
+  :hook (ghostel-mode . meow-ghostel-mode))
+
+(use-package! repeat-fu
+  :config
+  (setq repeat-fu-preset 'meow)
+  :hook (meow-mode . (lambda ()
+                       (when (and (not (minibufferp)) (not (derived-mode-p 'special-mode)))
+                         (repeat-fu-mode)))))
+
+; (setq dirvish-quick-access-entries
+;       '(("h" "~/" "home")
+;        ("d" "~/Downloads" "Downloads")
+;        ("C" "~/Code" "Code")
+;        ("N" "~/nix-config" "Nix Config")
+;        ("l" "~/.local" ".local")
+;        ("D" "~/Documents" "documents") ;        ("o" "~/Org" "Org")
+;
+;
+;
+;
 
 (use-package! nov
   :mode ("\\.epub\\'" . nov-mode)
