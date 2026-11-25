@@ -22,18 +22,18 @@
 
        :completion
        ;;company           ; the ultimate code completion
-       (corfu +icons +orderless)  ; complete with cap(f), cape and a flying feather!          ;
+       (corfu +icons +orderless +dabbv)  ; complete with cap(f), cape and a flying feather!          ;
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-       (vertico +icons
-                +childframe)           ; the search engine of the future
+       (vertico +icons +childframe)    ; the search engine of the future
+       
        :ui
        ;;deft            ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        dashboard         ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;;(emoji +unicode) ; 🙂
+       (emoji +unicode) ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;;indent-guides   ; highlighted indent columns

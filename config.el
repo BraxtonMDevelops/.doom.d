@@ -196,9 +196,9 @@
   :config
   (meow-setup)
   (add-to-list 'meow-mode-state-list '(+doom-dashboard-mode . normal))
-  (add-to-list 'meow-mode-state-list '(calendar-mode . motion)))
-  ;(meow-global-mode))
-;(load! meow.el)
+  (add-to-list 'meow-mode-state-list '(calendar-mode . motion))) 
+  ;;(meow-global-mode))
+;(load! "meow.el")
 (use-package! meow-tree-sitter
   :after meow
   :config
@@ -214,6 +214,28 @@
   :hook (meow-mode . (lambda ()
                        (when (and (not (minibufferp)) (not (derived-mode-p 'special-mode)))
                          (repeat-fu-mode)))))
+
+(with-eval-after-load 'meow
+  (defvar-keymap meow-org-motion-keymap
+    :parent meow-normal-state-keymap)
+  (meow-define-state org-motion
+    "Org-mode Meow motions"
+    :lighter "[O]"
+    :keymap meow-org-motion-keymap)
+  (setq meow-cursor-type-org-motion 'holow)
+
+  (meow-define-keys 'org-motion
+    '("i" . meow-org-insert-mode)
+    '("*" . meow-org-ctrl-c-star)
+    '("=" . meow-org-ctrl-c-minus)
+    ;;Easy motion between headlines
+    '("k" . org-previous-visible-heading)
+    '("j" . org-next-visible-heading)
+    '("[" . org-backward-heading-same-level)
+    '("]" . org-forward-heading-same-level)
+    '("{" . org-up-heading)
+    '("}" . org-down-heading))) 
+    ;; Set subtree metadata
 
 ; (setq dirvish-quick-access-entries
 ;       '(("h" "~/" "home")
@@ -256,39 +278,26 @@
                              :height 1.4
                              :width 'semi-expanded)
     (face-remap-add-relative 'default :height 1.3)
+    (variable-pitch-mode 1)
     (setq-local line-spacing 0.2
                 next-screen-context-lines 4
                 shr-use-colors nil)
     (require 'visual-fill-column nil t)
-    (setq-local visual-fill-column-center-text t
-                visual-fill-column-width 81
-                nov-text-width 80)
-    (visual-fill-column-mode 1)
-    (hl-line-mode -1)
+    (when (require 'visual-fill-column nil t)
+      (setq-local visual-fill-column-center-text t
+                  visual-fill-column-width 64
+                  nov-text-width 106)
+      (visual-fill-column-mode 1))
+    (when (featurep 'hl-line-mode)
+      hl-line-mode -1)
+    (nov-render-document)
+    (add-to-list '+lookup-definition-functions #'+lookup/dictionary-definition))
 
-    (add-to-list '+lookup-definition-functions #'+lookup/dictionary-definition)
-
-    (setq-local mode-line-format
-                `((:eval
-                   (doom-modeline-segment--workspace-name))
-                  (:eval
-                   (doom-modeline-segment--window-number))
-                  (:eval
-                   (doom-modeline-segment--nov-info))
-                  ,(propertize
-                    " %P "
-                    'face 'doom-modeline-buffer-minor-mode)
-                  ,(propertize
-                    " "
-                    'face (if (doom-modeline--active) 'mode-line 'mode-line-inactive)
-                    'display `((space
-                                :align-to
-                                (- (+ right right-fringe right-margin)
-                                   ,(* (let ((width (doom-modeline--font-width)))
-                                         (or (and (= width 1) 1)
-                                             (/ width (frame-char-width) 1.0)))
-                                       (string-width
-                                        (format-mode-line (cons "" '(:eval (doom-modeline-segment--major-mode))))))))))
-                  (:eval (doom-modeline-segment--major-mode)))))
 
   (add-hook 'nov-mode-hook #'+nov-mode-setup))
+
+(use-package jinx
+  :defer t
+  :config
+  (setopt jinx-languages "en_US")
+  (add-hook '(text-mode-hook org-mode-hook) #'jinx-mode))

@@ -44,7 +44,7 @@
                       "w" #'dape-watch-dwim
                       "D" #'dape-disconnect-quit
                       "q" #'dape-quit))
-      (:prefix-map ("w" . window)
+      (:prefix-map ("w" . "window")
        :desc "ace-window"             "w" #'ace-window
        :desc "swap windows"           "W" #'ace-swap-window
        :desc "split vertical"         "v" #'split-window-vertically
@@ -237,4 +237,151 @@
        :desc "Jump to previous hunk" "[" #'+vc-gutter/previous-hunk
        :desc "Jump to next hunk"     "]" #'+vc-gutter/next-hunk
        :desc "Magit dispatch"        "/" #'magit-dispatch
-       :desc "Magit file dispatch"   "." #'magit-file-dispatch))
+       :desc "Magit file dispatch"   "." #'magit-file-dispatch
+       :desc "Magit switch branch"   "b" #'magit-branch-checkout
+       :desc "Magit status"          "g" #'magit-status
+       :desc "Magit status here"     "G" #'magit-status-here
+       :desc "Magit file delete"     "D" #'magit-file-delete
+       :desc "Magit blame"           "B" #'magit-blame-addition
+       :desc "Magit clone"           "C" #'magit-clone
+       :desc "Magit fetch"           "F" #'magit-fetch
+       :desc "Magit buffer log"      "B" #'magit-log-buffer-file
+       :desc "Git stage file"        "S" #'magit-stage-file
+       :desc "Git unstage file"      "U" #'magit-unstage-file
+       :desc "Git push current"      "p" #'magit-push-curent-to-upstream
+       :desc "Git pull current"      "P" #'magit-pull-from-upstream
+       :desc "Discard local changes" "d" #'magit-discard
+       (:prefix ("f" . "find")
+        :desc "Find file"              "f" #'magit-find-file
+        :desc "Find ggitconfig file"   "g" #'magit-find-git-config-file
+        :desc "Find commit"            "c" #'magit-show-commit
+        :desc "Find issue"             "i" #'forge-visit-issue
+        :desc "Find pull request"      "p" #'forge-browse-pullreqs)
+       (:prefix ("o" . "open")
+        :desc "Browse file or region"  "o" #'+vc/browse-at-remote
+        :desc "Browse homepage"        "h" #'+vc/browse-at-remote-homepage
+        :desc "Browse remote"          "r" #'forge-browse-remote
+        :desc "Browse commit"          "c" #'forge-browse-commit
+        :desc "Browse an issue"        "i" #'forge-browse-issue
+        :desc "Browse a pull request"  "p" #'forge-browse-pullreq
+        :desc "Browse issues"          "I" #'forge-browse-issues
+        :desc "Browse pull requests"   "P" #'forge-browse-pullreqs)
+       (:prefix ("l" . "list")
+        :desc "List repositories"      "r" #'magit-list-repositories
+        :desc "List submodules"        "s" #'magit-list-submodules
+        :desc "List issues"            "i" #'forge-list-issues
+        :desc "List pull requests"     "p" #'forge-list-pullreqs
+        :desc "List notifications"     "n" #'forge-list-notifications)
+       (:prefix ("c" . "create")
+        :desc "Initialize repo"        "r" #'magit-init
+        :desc "Clone repo"             "R" #'magit-clone
+        :desc "Commit"                 "c" #'magit-commit-create
+        :desc "Fixup"                  "f" #'magit-commit-fixup
+        :desc "Branch"                 "b" #'magit-branch-and-checkout
+        :desc "Issue"                  "i" #'forge-create-issue
+        :desc "Pull Request"           "p" #'forge-create-pullreq))
+      ;;Code map
+      (:prefix-map ("c" . "code")
+       :desc "LSP"     "l" #'+default/lsp-command-map
+       ;;:desc "Jump to symbol in current workspace" "j" #'consult-lsp-symbols'
+       :desc "Jump to definition"                  "d" #+lookup/definition
+       :desc "Jump to references"                  "D"  #+lookup/references
+       :desc "Evaluate buffer/region"              "e" #'+eval/buffer-or-region
+       :desc "Evaluate & replace region"           "E" #'+eval:replace-region
+       :desc "Toggle Fold"                         "z" #'+fold/toggle
+       :desc "Format buffer/region"                "i" #'+lookup/implementations
+       :desc "Find implementations"                "k" #'+lookup/documentation
+       :desc "Send to REPL"                        "s" #'+eval/send-region-to-repl
+       :desc "Find type definition"                "t" #'+lookup/type-definition
+       :desc "Delete trailing whitespace"          "w" #'delete-trailing-whitespace
+       :desc "Delete trailing newlines"            "W" #'doom/delete-trailing-newlines
+       :desc "List errors"                         "x" #'+default/diagnostics
+       :desc "Spaces -> Tabs"                      "<tab>" #'tabify
+       :desc "Tabs -> Spaces"                      "C-<tab>" #'untabify
+       :desc "Diff buffer and file"                "b" #'diff-buffer-with-file)
+      
+      (:prefix ("-" . "String Case")
+       :desc "cycle"               "~" #'string-inflection-all-cycle
+       :desc "CamelCase"           "c" #'string-inflection-camelcase
+       :desc "downCase"            "d" #'string-inflection-lower-camelcase
+       :desc "kebab-case"          "-" #'string-inflection-kebab-case
+       :desc "under_score"         "_" #'string-inflection-underscore
+       :desc "Upper_Score"         "u" #'string-inflection-capital-underscore
+       :desc "UP_CASE"             "U" #'string-inflection-upcase
+       :desc "ALL CAPS"            "A" #'upcase-dwim
+       :desc "all lower"           "a" #'downcase-dwim
+       :desc "Capitalize Sentence" "s" #'capitalize-dwim)
+      
+      (:prefix ("q" . "Quit/Session")
+       :desc "Restart Emacs server"
+       :desc "Delete frame"
+       :desc "Clear current frame"
+       :desc "Kill Emacs (and daemon)"
+       :desc "Quit Emacs"
+       :desc "Save & quit Emacs"           "Q" 
+       :desc "Quick save current session"  "s" #'doom/quicksave-session
+       :desc "Restore last session"        "l" #'doom/quickload-session
+       :desc "Save session to file"        "S" #'doom/save-session
+       :desc "Restore session from file"   "L" #'doom/load-session
+       :desc "Restart & Restore Emacs"     "r" #'doom/restart-and-restore
+       :desc "Restart Emacs"               "R" #'doom/restart))
+
+(map! :map 'override
+      "C-S-V" #'consult-yank-from-kill-ring
+      "C-S-a" #'mark-whole-buffer
+      "C-S-Z" #'undo-redo
+      "C-w"   #'kill-buffer
+      "C-f"   #'+default/search-buffer
+      "C-s"   #'save-buffer
+      "C-;"   #'comment-dwim
+      "C-/"   #'comment-line
+      "C-M-<right>" #'switch-to-next-buffer
+      "C-M-<left>"  #'switch-to-prev-buffer
+      "C-M-<up>"    #'other-window
+      "C-M-<down>"  #'other-window
+      "C-<up>"      #'backward-paragraph
+      "C-<down>"    #'forward-paragraph
+      "M-<up>"      #'drag-stuff-up
+      "M-<down>"    #'drag-stuff-down
+      "M-<left>"    #'drag-stuff-left
+      "M-<right>"   #'drag-stuff-right
+      "C-M-h"       #'switch-to-prev-buffer
+      "C-M-j"       #'other-window
+      "C-M-k"       #'other-window
+      "C-M-l"       #'switch-to-next-buffer
+      "M-x"         #'execute-extended-command
+      "<home>"      #'beginning-of-buffer
+      "<end>"       #'end-of-buffer
+      "C-<return>"  #'split-window-vertically
+      "C-S-<return>" #'split-window-horizontally
+      "C-<backspace>" #'sp-backward-delete-word
+
+      "C-o" #'link-hint-open-link-at-point
+      "C-O" #'link-hint-open-link
+
+      "C-`" #'+popup/toggle
+      "C-~" #'+popup/raise
+
+      ;; Workspaces
+      "C-1" #+workspace/switch-to-0
+      "C-2" #+workspace/switch-to-1
+      "C-3" #+workspace/switch-to-2
+      "C-4" #+workspace/switch-to-3
+      "C-5" #+workspace/switch-to-4
+      "C-6" #+workspace/switch-to-5
+      "C-7" #+workspace/switch-to-6
+      "C-8" #+workspace/switch-to-7
+      "C-9" #+workspace/switch-to-8
+      "C-9" #+workspace/switch-to-final)
+      
+(map! :map 'minibuffer-mode-map
+      "C-S-E" #'+vertico/embark-export-write
+      "C-S-C" #'embark-collect
+      "C-."   #'embark-act
+      "C-m"   #'embark-select
+      "C-,"   #'embark-dwim
+      "<return>" #'vertico-exit
+      "C-d"   #'consult-dir)
+(map! :map 'scheme-mode-map
+      :localleader
+      :desc "guix" "g" #'guix)
